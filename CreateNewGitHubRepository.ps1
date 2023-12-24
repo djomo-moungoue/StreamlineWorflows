@@ -3,43 +3,51 @@ $ProjectDirectory = "$env:USERPROFILE\projectsza"
 $WorkingDirectory = $ProjectDirectory +"\"+ $Directory
 if(!(Test-Path -Path $ProjectDirectory))
 {# Project directory doesn't exist
+	Write-Host
 	"Creating the Project directory $ProjectDirectory ..."
 	New-Item -ItemType Directory $ProjectDirectory
+	Write-Host
 	"Creating the Working directory $WorkingDirectory ..."
 	New-Item -ItemType Directory $WorkingDirectory
 }
 elseif(!(Test-Path -Path $WorkingDirectory))
 {# Working directory doesn't exist
+	Write-Host
 	"Creating the Working directory $WorkingDirectory ..."
 	New-Item -ItemType Directory $WorkingDirectory
 }
+Write-Host
 "Setting the new location to $WorkingDirectory ..."
 Set-Location $WorkingDirectory
 
 if(!(Test-Path -Path "$WorkingDirectory\README.md"))
 {
+	Write-Host
 	"Creating the README.md file ..."
 	echo "# $Directory" >> README.md
 }
-
+Write-Host
 "Ininiatialing Git ..."
 git init
 
-"Adding README.md to the Git index ... "
+Write-Host
+"Adding changes to the Git index ... "
 git add . -f
-
-"Commiting ..."
+Write-Host
+"Commiting changes ..."
 git commit -m "first commit"
-
+Write-Host
 "Creating an moving to the branch main ..."
 git branch -M main
-
-"Adding a new remote repository"
-git remote add origin https://github.com/djomo-moungoue/$Directory.git
-git push --set-upstream origin main # alias -u
+Write-Host
+"Pushing change to the remote repository ..."
+git push origin main
 
 <#
 Problem
+
+git remote add origin https://github.com/djomo-moungoue/$Directory.git
+git push --set-upstream origin main # alias -u
 
 remote: Repository not found.
 fatal: repository 'https://github.com/djomo-moungoue/FlutterApps2.git/' not found
