@@ -1,5 +1,5 @@
-$Directory = "StreamlineWorklows"
-$ProjectDirectory = "$env:USERPROFILE\projectsza"
+$Directory = "StreamlineWorflows"
+$ProjectDirectory = "$env:USERPROFILE\ProjectsDM"
 $WorkingDirectory = $ProjectDirectory +"\"+ $Directory
 if(!(Test-Path -Path $ProjectDirectory))
 {# Project directory doesn't exist
@@ -35,12 +35,12 @@ Write-Host
 git add . -f
 Write-Host
 "Commiting changes ..."
-git commit -m "first commit"
+git commit -m "Automated Commit"
 Write-Host
 "Creating an moving to the branch main ..."
 git branch -M main
 Write-Host
-"Pushing change to the remote repository ..."
+"Pushing change to the remote repository https://github.com/djomo-moungoue/$Directory.git ..."
 git push origin main
 
 <#
